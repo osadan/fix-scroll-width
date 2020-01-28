@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import styled from 'styled-components';
 import './App.css';
+import Comp1 from './Comp1/Comp1';
+import FuncComp from './FuncComp/FuncComp';
+
+const AppContext = styled.div`
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:99vw;
+  height:99vh;
+`
 
 function App() {
+  const ref = React.createRef();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext>
+      <Comp1 tmp="1"></Comp1>
+      <FuncComp tmp="2" ref={ref} />
+    </AppContext>
   );
 }
 
