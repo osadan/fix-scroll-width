@@ -13,11 +13,10 @@ const AppContext = styled.div`
 `
 
 function App() {
-  const ref = React.createRef();
   return (
     <AppContext>
       <Comp1 tmp="1"></Comp1>
-      <FuncComp tmp="2" ref={ref} />
+      <FuncComp tmp="2" />
     </AppContext>
   );
 }

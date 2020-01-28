@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from "react-dom";
 
-
 const ScrollFixHoc = (WrappedComponent) => {
 
   class ScrollFix extends Component {
@@ -16,7 +15,7 @@ const ScrollFixHoc = (WrappedComponent) => {
       }
 
       const element = ReactDOM.findDOMNode(this.ref.current);
-      if (!elememt) {
+      if (!element) {
         return;
       }
 
@@ -28,24 +27,21 @@ const ScrollFixHoc = (WrappedComponent) => {
     }
 
     isClassComponent(component) {
-      return !!(
+      return Boolean(
         typeof component === 'function'
         && component.prototype
         && component.prototype.isReactComponent
       );
     }
+
     render() {
-      if (this.isClassComponent(WrappedComponent)) {
-        return <WrappedComponent {...this.props} ref={this.ref} />
-      } else {
-        return <WrappedComponent {...this.props} forwardRef={this.ref} />
-      }
+      return this.isClassComponent(WrappedComponent) ?
+        <WrappedComponent {...this.props} ref={this.ref} /> :
+        <WrappedComponent {...this.props} forwardRef={this.ref} />
     }
   }
 
-  return React.forwardRef((props, ref) => {
-    return <ScrollFix {...props} forwardRef={ref} />
-  })
+  return ScrollFix;
 }
 
 export default ScrollFixHoc;
